@@ -9,11 +9,43 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
+$basfse-accent-color: (
+    50 : #e4eaf4,
+    100 : #bcc9e3,
+    200 : #90a6d0,
+    300 : #6482bd,
+    400 : #4267af,
+    500 : #214ca1,
+    600 : #1d4599,
+    700 : #183c8f,
+    800 : #143385,
+    900 : #0b2474,
+    A100 : #a6b6ff,
+    A200 : #738dff,
+    A400 : #4063ff,
+    A700 : #264eff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$basfse-webapp-primary: mat-palette($mat-indigo);
-$basfse-webapp-accent: mat-palette($mat-pink, A200, A100, A400);
+$basfse-webapp-primary: mat-palette($mat-grey, A50);
+$basfse-webapp-accent: mat-palette($basfse-accent-color);
 
 // The warn palette is optional (defaults to red).
 $basfse-webapp-warn: mat-palette($mat-red);
