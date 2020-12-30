@@ -1,0 +1,44 @@
+.chemical-searchbox-chip-list {
+  background: white;
+  width: 100%;
+}
+.mat-form-field {
+  border-radius: 10px;
+  text-align: center;
+  width: 100%;
+  min-height: 2.5rem;
+}
+::ng-deep  .mat-autocomplete-panel.mat-autocomplete-visible{
+  border-radius: 10px;
+}
+input.mat-chip-input {
+  min-height: 2rem;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+::ng-deep .mat-form-field-infix {
+  border-top:0px !important;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  height: 0px !important;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+  margin-left: 0.25rem;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
+
+::ng-deep .mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: transparent !important;;
+}
+.search-icon{
+  margin-right: 0.5rem;
+}
+.mat-standard-chip {
+  min-height: 24px;
+}
