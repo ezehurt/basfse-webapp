@@ -7,6 +7,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
+import { ChemicalModule } from './chemical/chemical.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { reducers, metaReducers } from './reducers';
     BrowserModule,
     AppRoutingModule,
     AngularMaterialModule,
+    ChemicalModule,
     StoreModule.forRoot(reducers, { metaReducers })
   ],
   providers: [],
