@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatAutocompleteModule, MatButtonModule, MatChipsModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatSnackBarModule, MatToolbarModule, MatTooltipModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatCardModule, MatChipsModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatSnackBarModule, MatToolbarModule, MatTooltipModule } from '@angular/material';
 
 @NgModule({
   declarations: [],
@@ -18,7 +18,8 @@ import { MatAutocompleteModule, MatButtonModule, MatChipsModule, MatDividerModul
     MatFormFieldModule,
     MatInputModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatCardModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -32,7 +33,8 @@ import { MatAutocompleteModule, MatButtonModule, MatChipsModule, MatDividerModul
     MatFormFieldModule,
     MatInputModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatCardModule
   ]
 })
 export class AngularMaterialModule { }
