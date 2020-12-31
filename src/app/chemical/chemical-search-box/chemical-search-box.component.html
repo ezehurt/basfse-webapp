@@ -1,27 +1,29 @@
 <mat-form-field class="chemical-searchbox-chip-list">
-  <!-- <mat-label>Favorite Fruits</mat-label> -->
-  <mat-chip-list #chipList aria-label="Fruit selection">
+  <mat-chip-list #chipList aria-label="Chemical selection">
     <mat-chip
-      *ngFor="let fruit of fruits"
+      *ngFor="let chemical of chemicalChipList"
       [selectable]="selectable"
       [removable]="removable"
-      (removed)="remove(fruit)">
-      {{fruit}}
+      (removed)="remove(chemical)"
+    >
+      {{ chemical }}
       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
     </mat-chip>
     <input
-      #fruitInput
-      [formControl]="fruitCtrl"
-      [ngClass]="{'hidden': hideInput}"
+      #chemicalInput
+      [formControl]="chemicalCtrl"
+      [ngClass]="{ hidden: hideInput }"
       [matAutocomplete]="auto"
       [matChipInputFor]="chipList"
-      [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
-      <mat-icon class="search-icon" matSuffix>search</mat-icon>
+      (matChipInputTokenEnd)="add($event)"
+    />
+    <mat-icon class="search-icon" matSuffix (click)="onSearchIconClicked()"
+      >search</mat-icon
+    >
   </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-    <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-      {{fruit}}
+    <mat-option *ngFor="let chemical of chemicalList" [value]="chemical.name">
+      {{ chemical.name }}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>
-

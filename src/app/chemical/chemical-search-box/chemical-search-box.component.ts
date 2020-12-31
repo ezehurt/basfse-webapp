@@ -1,77 +1,91 @@
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from "@angular/core";
+import { FormControl } from "@angular/forms";
+import {
+  MatAutocompleteSelectedEvent,
+  MatAutocomplete,
+} from "@angular/material/autocomplete";
+import { MatChipInputEvent } from "@angular/material/chips";
+import { Subject } from "rxjs";
+import { ChemicalService } from "../chemical.service";
+import { IChemical } from "../models/IChemical";
+import { IChemicalServiceResponse } from "../models/IChemicalServiceResponse";
 
 @Component({
-  selector: 'app-chemical-search-box',
-  templateUrl: './chemical-search-box.component.html',
-  styleUrls: ['./chemical-search-box.component.scss']
+  selector: "app-chemical-search-box",
+  templateUrl: "./chemical-search-box.component.html",
+  styleUrls: ["./chemical-search-box.component.scss"],
 })
-export class ChemicalSearchBoxComponent implements OnInit {
+export class ChemicalSearchBoxComponent implements OnInit,OnDestroy {
+
   visible = true;
   selectable = true;
   removable = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new FormControl();
-  filteredFruits: Observable<string[]>;
-  fruits: string[] = ['Lemon'];
+  chemicalCtrl = new FormControl();
+  chemicalChipList: string[] = [];
   hideInput = false;
-  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  chemicalList: IChemical[] = [];
 
-  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  @ViewChild("chemicalInput") chemicalInput: ElementRef<HTMLInputElement>;
+  @ViewChild("auto") matAutocomplete: MatAutocomplete;
 
-  constructor() {
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-        startWith(null),
-        map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+  private _destroyed$ = new Subject();
+
+  constructor(private _chemicalService: ChemicalService) {}
+
+  ngOnInit() {
+    this.chemicalCtrl.valueChanges.subscribe((value) => {
+      this.getChemicals(value);
+    });
   }
-  ngOnInit(){}
-
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
-    this.hideInput = false;
 
-    // Add our fruit
-    if ((value || '').trim()) {
-      this.fruits.push(value.trim());
-    }
-
-    // Reset the input value
     if (input) {
-      input.value = '';
+      input.value = "";
     }
-
-    this.fruitCtrl.setValue(null);
+    this.chemicalChipList.push(value);
+    this.chemicalCtrl.setValue(null);
+    this.hideInput = true;
   }
 
-  remove(fruit: string): void {
-    console.log('se dispara el remove');
+  remove(chemical: string): void {
     this.hideInput = false;
-    const index = this.fruits.indexOf(fruit);
+    const index = this.chemicalChipList.indexOf(chemical);
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.chemicalChipList.splice(index, 1);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+    this.chemicalChipList.push(event.option.viewValue);
+    this.chemicalInput.nativeElement.value = "";
+    this.chemicalCtrl.setValue(null);
     this.hideInput = true;
-    console.log('se dispara selected event')
-
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+  getChemicals(searchTerm) {
+    this._chemicalService.getChemicals(searchTerm).subscribe(
+      (response: IChemicalServiceResponse) => {
+        this.chemicalList = response.chemicals;
+      },
+      (err) => {
+        //TO DO Manage error
+        console.log(err);
+      }
+    );
   }
-
+  onSearchIconClicked() {
+    const value = this.chemicalInput.nativeElement.value;
+    if (value) {
+      this.chemicalChipList.push(value);
+      this.chemicalCtrl.setValue(null);
+      this.hideInput = true;
+      this.chemicalInput.nativeElement.value = "";
+    }
+  }
+  ngOnDestroy(){
+    this._destroyed$.next();
+    this._destroyed$.complete();
+  }
 }

@@ -8,7 +8,7 @@
   width: 100%;
   min-height: 2.5rem;
 }
-::ng-deep  .mat-autocomplete-panel.mat-autocomplete-visible{
+::ng-deep .mat-autocomplete-panel.mat-autocomplete-visible {
   border-radius: 10px;
 }
 input.mat-chip-input {
@@ -20,7 +20,7 @@ input.mat-chip-input {
 }
 
 ::ng-deep .mat-form-field-infix {
-  border-top:0px !important;
+  border-top: 0px !important;
 }
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
   height: 0px !important;
@@ -33,11 +33,12 @@ input.mat-chip-input {
 }
 
 ::ng-deep .mat-form-field-ripple {
- /*change color of underline when focused*/
- background-color: transparent !important;;
+  /*change color of underline when focused*/
+  background-color: transparent !important;
 }
-.search-icon{
+.search-icon {
   margin-right: 0.5rem;
+  cursor: pointer;
 }
 .mat-standard-chip {
   min-height: 24px;
