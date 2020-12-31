@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from "@angular/core";
+import { Component, OnInit,EventEmitter, ElementRef, ViewChild, OnDestroy, Output } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import {
   MatAutocompleteSelectedEvent,
@@ -27,6 +27,8 @@ export class ChemicalSearchBoxComponent implements OnInit,OnDestroy {
 
   @ViewChild("chemicalInput") chemicalInput: ElementRef<HTMLInputElement>;
   @ViewChild("auto") matAutocomplete: MatAutocomplete;
+
+  @Output() chemicalSelected = new EventEmitter<IChemical>();
 
   private _destroyed$ = new Subject();
 
@@ -59,6 +61,7 @@ export class ChemicalSearchBoxComponent implements OnInit,OnDestroy {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.chemicalChipList.push(event.option.viewValue);
+    this.chemicalSelected.emit(this.getChemical(event.option.value));
     this.chemicalInput.nativeElement.value = "";
     this.chemicalCtrl.setValue(null);
     this.hideInput = true;
@@ -83,6 +86,9 @@ export class ChemicalSearchBoxComponent implements OnInit,OnDestroy {
       this.hideInput = true;
       this.chemicalInput.nativeElement.value = "";
     }
+  }
+  getChemical(chemicalId:string): IChemical{
+      return this.chemicalList.find(chemical => chemical._id === chemicalId);
   }
   ngOnDestroy(){
     this._destroyed$.next();

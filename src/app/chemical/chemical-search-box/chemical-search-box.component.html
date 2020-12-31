@@ -22,7 +22,7 @@
     >
   </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-    <mat-option *ngFor="let chemical of chemicalList" [value]="chemical.name">
+    <mat-option *ngFor="let chemical of chemicalList" [value]="chemical._id">
       {{ chemical.name }}
     </mat-option>
   </mat-autocomplete>
