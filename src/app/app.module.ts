@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { reducers, metaReducers } from '../root.reducer';
 import { ChemicalModule } from './chemical/chemical.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DocumentModule } from './document/document.module';
@@ -15,11 +15,13 @@ import { RootEffects } from '../root.effects';
 import { UIEffects } from '../store/ui/ui.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment.prod';
+import { SpinnerDialogComponent } from './shared/spinner-dialog/spinner-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    SpinnerDialogComponent
   ],
   imports: [
     BrowserModule,
