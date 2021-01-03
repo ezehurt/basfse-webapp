@@ -2,10 +2,24 @@
 .chemical-windows-container{
   display: flex;
   justify-content: center;
+  flex-direction: column;
+}
+.chemical-windows-searchbar{
+  display: flex;
+  justify-content: center;
   padding: 3rem 3rem;
   background-color: #2696d2;
   min-height: 4rem;
 }
-.chemical-windows-searchbar{
+.chemical-window-searchbox{
   width: 40%;
+}
+.chemical-window-summary{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.chemical-window-summary-card{
+  margin: 1rem;
+  width: 20%;
 }

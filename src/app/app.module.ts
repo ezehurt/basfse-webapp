@@ -9,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { ChemicalModule } from './chemical/chemical.module';
 import { HttpClientModule } from '@angular/common/http';
+import { DocumentModule } from './document/document.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     AngularMaterialModule,
     ChemicalModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    HttpClientModule
+    HttpClientModule,
+    DocumentModule
   ],
   providers: [],
   bootstrap: [AppComponent]

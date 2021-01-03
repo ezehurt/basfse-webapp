@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IChemical } from '../models/IChemical';
+import { DocumentService } from '../../document/document.service';
 
 @Component({
   selector: 'app-chemical-window',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChemicalWindowComponent implements OnInit {
 
-  constructor() { }
+  chemical: IChemical;
+  documentsCount: number;
+  constructor(
+    private _documentService: DocumentService
+  ) { }
 
   ngOnInit() {
   }
-
+  onChemicalSelected(chemical) {
+    //check if chemical exist, may be will empty
+    this.chemical = chemical;
+    this.getChemicalsDocuments(chemical._id);
+  }
+  getChemicalsDocuments(chemicalId){
+    this._documentService.getDocumentsByChemicalId(chemicalId)
+    .subscribe((response:any)=>{
+      this.documentsCount = response.paging.total;
+    })
+  }
 }

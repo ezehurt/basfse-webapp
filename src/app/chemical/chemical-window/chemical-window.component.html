@@ -1,5 +1,15 @@
 <div class="chemical-windows-container">
   <div class="chemical-windows-searchbar">
-    <app-chemical-search-box></app-chemical-search-box>
+    <app-chemical-search-box
+      class="chemical-window-searchbox"
+      (chemicalSelected)="onChemicalSelected($event)"
+    ></app-chemical-search-box>
+  </div>
+  <div class="chemical-window-summary">
+    <app-chemical-summay-card
+      class="chemical-window-summary-card"
+      [chemical]="chemical"
+      [documentsCount]="documentsCount"
+    ></app-chemical-summay-card>
   </div>
 </div>
