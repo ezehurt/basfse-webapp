@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { DocumentWindowComponent } from './document-window.component';
+import { DocumentsTableComponent } from './documents-table.component';
 
-describe('DocumentWindowComponent', () => {
-  let component: DocumentWindowComponent;
-  let fixture: ComponentFixture<DocumentWindowComponent>;
+describe('DocumentsTableComponent', () => {
+  let component: DocumentsTableComponent;
+  let fixture: ComponentFixture<DocumentsTableComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DocumentWindowComponent ]
+      declarations: [ DocumentsTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DocumentWindowComponent);
+    fixture = TestBed.createComponent(DocumentsTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

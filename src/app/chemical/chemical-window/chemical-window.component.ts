@@ -23,11 +23,17 @@ export class ChemicalWindowComponent implements OnInit {
   relatedChemicalTypeTwoDataResultLength = 0;
 
 
-  filter: IFilter = {
+  relatedDocFilter: IFilter = {
     offset: PAGING.DEFAULT_OFFSET,
     limit: PAGING.DEFAULT_PAGE_SIZE,
     sortBy: 'count',
     sortOrder: -1
+  }
+  docFilter: IFilter = {
+    offset: PAGING.DEFAULT_OFFSET,
+    limit: PAGING.DEFAULT_PAGE_SIZE,
+    sortBy: 'patentNo',
+    sortOrder: 1
   }
 
   constructor(
@@ -40,12 +46,12 @@ export class ChemicalWindowComponent implements OnInit {
     //check if chemical exist, may be will empty
     this.chemical = chemical;
     this.getChemicalsDocuments(chemical._id);
-    this.getRelatedChemicalsDocuments(chemical._id, this.chemicalTypeOne, this.filter);
-    this.getRelatedChemicalsDocuments(chemical._id, this.chemicalTypeTwo, this.filter);
+    this.getRelatedChemicalsDocuments(chemical._id, this.chemicalTypeOne, this.relatedDocFilter);
+    this.getRelatedChemicalsDocuments(chemical._id, this.chemicalTypeTwo, this.relatedDocFilter);
 
   }
   getChemicalsDocuments(chemicalId){
-    this._documentService.getDocumentsByChemicalId(chemicalId)
+    this._documentService.getDocumentsByChemicalId(chemicalId,this.docFilter)
     .subscribe((response:any)=>{
       this.documentsCount = response.paging.total;
     })
@@ -71,16 +77,16 @@ export class ChemicalWindowComponent implements OnInit {
     })
   }
   doPagination(event,chemicalType){
-    this.filter.limit = PAGING.DEFAULT_PAGE_SIZE;
-    this.filter.offset = event.pageIndex * event.pageSize;
-    this.getRelatedChemicalsDocuments(this.chemical._id, chemicalType,this.filter)
+    this.relatedDocFilter.limit = PAGING.DEFAULT_PAGE_SIZE;
+    this.relatedDocFilter.offset = event.pageIndex * event.pageSize;
+    this.getRelatedChemicalsDocuments(this.chemical._id, chemicalType,this.relatedDocFilter)
   }
   doSorting(event,chemicalType){
-    this.filter.limit = PAGING.DEFAULT_PAGE_SIZE;
-    this.filter.offset = PAGING.DEFAULT_OFFSET;
-    this.filter.sortBy = event.active;
-    this.filter.sortOrder = this._mapSortOrder(event.direction);
-    this.getRelatedChemicalsDocuments(this.chemical._id, chemicalType,this.filter)
+    this.relatedDocFilter.limit = PAGING.DEFAULT_PAGE_SIZE;
+    this.relatedDocFilter.offset = PAGING.DEFAULT_OFFSET;
+    this.relatedDocFilter.sortBy = event.active;
+    this.relatedDocFilter.sortOrder = this._mapSortOrder(event.direction);
+    this.getRelatedChemicalsDocuments(this.chemical._id, chemicalType,this.relatedDocFilter)
   }
 
   onTypeOnePagingEvent(event) {

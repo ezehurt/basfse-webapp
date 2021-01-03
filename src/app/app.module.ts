@@ -10,6 +10,11 @@ import { reducers, metaReducers } from './reducers';
 import { ChemicalModule } from './chemical/chemical.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DocumentModule } from './document/document.module';
+import { EffectsModule } from '@ngrx/effects';
+import { RootEffects } from '../root.effects';
+import { UIEffects } from '../store/ui/ui.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -21,9 +26,14 @@ import { DocumentModule } from './document/document.module';
     AppRoutingModule,
     AngularMaterialModule,
     ChemicalModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
     HttpClientModule,
-    DocumentModule
+    DocumentModule,
+    StoreModule.forRoot(reducers, {metaReducers}),
+    EffectsModule.forRoot([RootEffects]),
+    EffectsModule.forFeature([
+      UIEffects,
+    ]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

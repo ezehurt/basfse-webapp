@@ -9,12 +9,12 @@ const routes: Routes = [
     path: BASE,
     component: ChemicalWindowComponent
   },
-  { path: `${DOCUMENT}/:id`, component: DocumentWindowComponent },
-
+  { path: `${DOCUMENT}/:id`, component: DocumentWindowComponent},
+  { path: '**', redirectTo: BASE }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
