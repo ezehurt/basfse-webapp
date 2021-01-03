@@ -16,12 +16,14 @@ import { UIEffects } from '../store/ui/ui.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment.prod';
 import { SpinnerDialogComponent } from './shared/spinner-dialog/spinner-dialog.component';
+import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    SpinnerDialogComponent
+    SpinnerDialogComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

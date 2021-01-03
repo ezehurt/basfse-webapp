@@ -4,6 +4,10 @@ import { DocumentService, IFilter } from '../../document/document.service';
 import { IRelatedChemicalDocumentsSummary } from '../models/IRelatedChemicalDocumentsSummary';
 import { PAGING } from '../../consts/api.consts';
 import { CHEMICAL_TYPE_1, CHEMICAL_TYPE_2 } from '../../consts/model.consts';
+import { AppState } from '../../../root.reducer';
+import { Store } from '@ngrx/store';
+import * as fromUI from '../../../store/ui/ui.actions';
+
 
 @Component({
   selector: 'app-chemical-window',
@@ -12,6 +16,8 @@ import { CHEMICAL_TYPE_1, CHEMICAL_TYPE_2 } from '../../consts/model.consts';
 })
 export class ChemicalWindowComponent implements OnInit {
 
+  isLoading = false;
+  showErrorPage = false;
   chemical: IChemical;
   documentsCount: number;
   chemicalTypeOne: number = CHEMICAL_TYPE_1;
@@ -37,7 +43,8 @@ export class ChemicalWindowComponent implements OnInit {
   }
 
   constructor(
-    private _documentService: DocumentService
+    private _documentService: DocumentService,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
@@ -51,9 +58,14 @@ export class ChemicalWindowComponent implements OnInit {
 
   }
   getChemicalsDocuments(chemicalId){
+    this.store.dispatch(new fromUI.ActivateLoadingAction());
     this._documentService.getDocumentsByChemicalId(chemicalId,this.docFilter)
     .subscribe((response:any)=>{
       this.documentsCount = response.paging.total;
+      this.store.dispatch(new fromUI.DeactivateLoadingAction());
+    }, err =>{
+      this.store.dispatch(new fromUI.DeactivateLoadingAction());
+      this.showErrorPage = true;
     })
   }
   getRelatedChemicalsDocuments(chemicalId: string, chemicalType: number,filter){
