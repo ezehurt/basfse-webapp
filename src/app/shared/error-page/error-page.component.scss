@@ -1,0 +1,13 @@
+.error-page-container{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  &__title{
+    text-align: center;
+  }
+  &__img{
+    width: 250px;
+    opacity: 0.5;
+    align-self: center;
+  }
+}

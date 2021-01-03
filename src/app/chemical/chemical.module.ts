@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ChemicalSummayCardComponent } from './chemical-summay-card/chemical-summay-card.component';
 import { ChemicalSummaryTableComponent } from './chemical-summary-table/chemical-summary-table.component';
 import { ErrorPageComponent } from '../shared/error-page/error-page.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ErrorPageComponent } from '../shared/error-page/error-page.component';
   imports: [
     CommonModule,
     AngularMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class ChemicalModule { }

@@ -17,13 +17,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment.prod';
 import { SpinnerDialogComponent } from './shared/spinner-dialog/spinner-dialog.component';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    SpinnerDialogComponent,
-    ErrorPageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +30,7 @@ import { ErrorPageComponent } from './shared/error-page/error-page.component';
     ChemicalModule,
     HttpClientModule,
     DocumentModule,
+    SharedModule,
     StoreModule.forRoot(reducers, {metaReducers}),
     EffectsModule.forRoot([RootEffects]),
     EffectsModule.forFeature([
