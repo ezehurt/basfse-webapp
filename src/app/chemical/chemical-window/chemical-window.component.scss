@@ -13,6 +13,7 @@
 }
 .chemical-window-searchbox{
   width: 40%;
+  min-width: 200px;
 }
 .chemical-window-summary{
   display: flex;
@@ -22,4 +23,10 @@
 .chemical-window-summary-card{
   margin: 1rem;
   width: 20%;
+}
+
+.chemical-window-summary-tables {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 2rem;
 }

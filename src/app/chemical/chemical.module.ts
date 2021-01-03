@@ -5,12 +5,14 @@ import { ChemicalSearchBoxComponent } from './chemical-search-box/chemical-searc
 import { AngularMaterialModule } from '../angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChemicalSummayCardComponent } from './chemical-summay-card/chemical-summay-card.component';
+import { ChemicalSummaryTableComponent } from './chemical-summary-table/chemical-summary-table.component';
 
 @NgModule({
   declarations: [
     ChemicalWindowComponent,
     ChemicalSearchBoxComponent,
-    ChemicalSummayCardComponent
+    ChemicalSummayCardComponent,
+    ChemicalSummaryTableComponent
   ],
   exports: [
     ChemicalWindowComponent

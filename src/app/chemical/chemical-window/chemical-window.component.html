@@ -12,4 +12,26 @@
       [documentsCount]="documentsCount"
     ></app-chemical-summay-card>
   </div>
+  <div class="chemical-window-summary-tables">
+    <div *ngIf="relatedChemicalTypeOneData">
+      <h3>Type 1 Related Chemical Docs</h3>
+      <app-chemical-summary-table
+      [chemicalData]="relatedChemicalTypeOneData"
+      [pageSize]="5"
+      [resultsLength]="relatedChemicalTypeOneDataResultLength"
+      (pagingEvent)="onTypeOnePagingEvent($event)"
+      (sortingEvent)="onTypeOneSortingEvent($event)"    ></app-chemical-summary-table>
+    </div>
+    <div *ngIf="relatedChemicalTypeTwoData">
+      <h3>Type 2 Related Chemical Docs</h3>
+      <app-chemical-summary-table
+      [chemicalData]="relatedChemicalTypeTwoData"
+      [pageSize]="5"
+      [resultsLength]="relatedChemicalTypeTwoDataResultLength"
+      (pagingEvent)="onTypeTwoPagingEvent($event)"
+      (sortingEvent)="onTypeTwoSortingEvent($event)"
+    ></app-chemical-summary-table>
+    </div>
+
+  </div>
 </div>
