@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatAutocompleteModule, MatButtonModule, MatCardModule, MatChipsModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatSnackBarModule, MatToolbarModule, MatTooltipModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatCardModule, MatChipsModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatPaginatorModule, MatProgressSpinnerModule, MatSnackBarModule, MatSortModule, MatTableModule, MatToolbarModule, MatTooltipModule } from '@angular/material';
 
 @NgModule({
   declarations: [],
@@ -34,7 +34,11 @@ import { MatAutocompleteModule, MatButtonModule, MatCardModule, MatChipsModule, 
     MatInputModule,
     MatChipsModule,
     MatAutocompleteModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class AngularMaterialModule { }
