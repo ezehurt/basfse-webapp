@@ -10,8 +10,8 @@ import { IChemical } from '../chemical/models/IChemical';
 export class DocumentService {
   constructor(private _http: HttpClient) {}
 
-  getDocumentsByChemicalId(chemicalId: string): Observable<any> {
-    return this._http.get<any>(`${environment.apiUrl}/document/${chemicalId}/chemical`);
+  getDocumentsByChemicalId(chemicalId: string, filter: IFilter): Observable<any> {
+    return this._http.get<any>(`${environment.apiUrl}/document/${chemicalId}/chemical?&offset=${filter.offset}&limit=${filter.offset}&sortBy=${filter.sortBy}&sortOrder=${filter.sortOrder}`);
   }
   getRelatedDocumentsCountByChemicalId(chemicalId:string,chemicalType:number, filter:IFilter): Observable<any> {
     return this._http.get<any>(`${environment.apiUrl}/document/${chemicalId}/related?chemicalType=${chemicalType}&offset=${filter.offset}&limit=${filter.limit}&sortBy=${filter.sortBy}&sortOrder=${filter.sortOrder}`);

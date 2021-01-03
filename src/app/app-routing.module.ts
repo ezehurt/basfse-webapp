@@ -9,8 +9,8 @@ const routes: Routes = [
     path: BASE,
     component: ChemicalWindowComponent
   },
-  { path: `${DOCUMENT}/:id`, component: DocumentWindowComponent },
-
+  { path: `${DOCUMENT}/:id`, component: DocumentWindowComponent},
+  { path: '**', redirectTo: BASE }
 ];
 
 @NgModule({
