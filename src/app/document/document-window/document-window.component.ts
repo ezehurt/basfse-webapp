@@ -37,7 +37,6 @@ export class DocumentWindowComponent implements OnInit {
     this._documentService.getDocumentsByChemicalId(chemicalID,filter)
     .subscribe((response:any)=>{
       this.documentsCount = response.paging.total;
-      console.log(response);
       this.documentData = response.documents;
     }, err => {
       //TO DO MANAGE ERROR

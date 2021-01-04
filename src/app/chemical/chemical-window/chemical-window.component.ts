@@ -53,7 +53,6 @@ export class ChemicalWindowComponent implements OnInit {
   onChemicalSelected(chemical) {
     this.showErrorPage = false;
     //when user types enter on non valid chemical
-    console.log(chemical);
     if(!chemical) return;
     this.chemical = chemical;
     this.getChemicalsDocuments(chemical._id);

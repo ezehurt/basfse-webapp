@@ -1,16 +1,26 @@
 
 .spacer {
-  flex: 1 1 auto;
+  flex: 1 1;
 }
 .navbar {
   padding: 0 0;
+  justify-content: space-between;
 }
 .logo {
   background-color: #214ca1;
   height: 100%;
   flex: 0.2;
+  align-self: flex-start;
   max-width: 113px;
 }
 .logo-img {
   height: inherit;
+}
+.actions{
+  display: flex;
+  flex: 1;
+  min-width: 300px;
+  &__login{
+    width: 300px;
+  }
 }
