@@ -1,0 +1,13 @@
+.document-import{
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+    &__btn{
+      align-self: center;
+      width: 50%;
+      margin: 0.5rem;
+    }
+
+  }

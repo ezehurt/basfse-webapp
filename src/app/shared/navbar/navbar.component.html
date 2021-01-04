@@ -4,8 +4,15 @@
       <img src="../../../assets/img/basf-logo.png" alt="basf-logo" class="logo-img">
     </div>
     <!-- <span class="spacer"></span> -->
-    <ng-container class="actions">
+    <div class="actions">
+      <div class="actions__navigation">
+        <div class="buttons">
+          <a (click)="navigate('/import')" mat-button>Import CSV</a>
+          <a (click)="navigate('/')" mat-button>Search</a>
+
+        </div>
+      </div>
       <app-login class="actions__login"></app-login>
-    </ng-container>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>

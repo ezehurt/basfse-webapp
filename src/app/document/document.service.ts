@@ -16,6 +16,9 @@ export class DocumentService {
   getRelatedDocumentsCountByChemicalId(chemicalId:string,chemicalType:number, filter:IFilter): Observable<any> {
     return this._http.get<any>(`${environment.apiUrl}/document/${chemicalId}/related?chemicalType=${chemicalType}&offset=${filter.offset}&limit=${filter.limit}&sortBy=${filter.sortBy}&sortOrder=${filter.sortOrder}`);
   }
+  uploadData(data){
+    return this._http.post<any>(`${environment.apiUrl}/document/import`,data);
+  }
 }
 export interface IFilter{
   offset: number,
