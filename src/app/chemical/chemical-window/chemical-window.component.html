@@ -3,6 +3,7 @@
     <app-chemical-search-box
       class="chemical-window-searchbox"
       (chemicalSelected)="onChemicalSelected($event)"
+      (error)="onError($event)"
     ></app-chemical-search-box>
   </div>
   <div class="chemical-window-summary">
@@ -34,5 +35,5 @@
     </div>
 
   </div>
-  <app-error-page class="chemical-windows-error"></app-error-page>
+  <app-error-page *ngIf="showErrorPage"[description]="errorDescription" class="chemical-windows-error"></app-error-page>
 </div>

@@ -18,6 +18,7 @@ export class ChemicalWindowComponent implements OnInit {
 
   isLoading = false;
   showErrorPage = false;
+  errorDescription = "";
   chemical: IChemical;
   documentsCount: number;
   chemicalTypeOne: number = CHEMICAL_TYPE_1;
@@ -50,7 +51,10 @@ export class ChemicalWindowComponent implements OnInit {
   ngOnInit() {
   }
   onChemicalSelected(chemical) {
-    //check if chemical exist, may be will empty
+    this.showErrorPage = false;
+    //when user types enter on non valid chemical
+    console.log(chemical);
+    if(!chemical) return;
     this.chemical = chemical;
     this.getChemicalsDocuments(chemical._id);
     this.getRelatedChemicalsDocuments(chemical._id, this.chemicalTypeOne, this.relatedDocFilter);
@@ -61,16 +65,19 @@ export class ChemicalWindowComponent implements OnInit {
     this.store.dispatch(new fromUI.ActivateLoadingAction());
     this._documentService.getDocumentsByChemicalId(chemicalId,this.docFilter)
     .subscribe((response:any)=>{
+      this.showErrorPage = false;
       this.documentsCount = response.paging.total;
       this.store.dispatch(new fromUI.DeactivateLoadingAction());
     }, err =>{
       this.store.dispatch(new fromUI.DeactivateLoadingAction());
       this.showErrorPage = true;
+      this.errorDescription = err.message;
     })
   }
   getRelatedChemicalsDocuments(chemicalId: string, chemicalType: number,filter){
     this._documentService.getRelatedDocumentsCountByChemicalId(chemicalId, chemicalType, filter)
     .subscribe((response:any)=>{
+      this.showErrorPage = false;
       switch(chemicalType){
         case this.chemicalTypeOne:{
           this.relatedChemicalTypeOneData = response.chemicalList;
@@ -86,6 +93,9 @@ export class ChemicalWindowComponent implements OnInit {
           return;
         }
       }
+    }, err => {
+      this.showErrorPage = true;
+      this.errorDescription = err.message;
     })
   }
   doPagination(event,chemicalType){
@@ -112,6 +122,11 @@ export class ChemicalWindowComponent implements OnInit {
   }
   onTypeTwoSortingEvent(event) {
       this.doSorting(event, this.chemicalTypeTwo)
+  }
+  onError(message){
+    console.log(message);
+    this.showErrorPage=true;
+    this.errorDescription = message;
   }
 
   private _mapSortOrder(sortOrder:string){

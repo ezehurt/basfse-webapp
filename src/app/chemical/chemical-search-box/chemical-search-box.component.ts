@@ -5,10 +5,14 @@ import {
   MatAutocomplete,
 } from "@angular/material/autocomplete";
 import { MatChipInputEvent } from "@angular/material/chips";
+import { Store } from "@ngrx/store";
 import { Subject } from "rxjs";
 import { ChemicalService } from "../chemical.service";
 import { IChemical } from "../models/IChemical";
 import { IChemicalServiceResponse } from "../models/IChemicalServiceResponse";
+import { AppState } from '../../../root.reducer';
+import * as fromUI from '../../../store/ui/ui.actions';
+
 
 @Component({
   selector: "app-chemical-search-box",
@@ -29,10 +33,14 @@ export class ChemicalSearchBoxComponent implements OnInit,OnDestroy {
   @ViewChild("auto") matAutocomplete: MatAutocomplete;
 
   @Output() chemicalSelected = new EventEmitter<IChemical>();
+  @Output() error = new EventEmitter<string>();
+
 
   private _destroyed$ = new Subject();
 
-  constructor(private _chemicalService: ChemicalService) {}
+  constructor(
+    private _chemicalService: ChemicalService,
+    private store: Store<AppState>) {}
 
   ngOnInit() {
     this.chemicalCtrl.valueChanges.subscribe((value) => {
@@ -57,6 +65,8 @@ export class ChemicalSearchBoxComponent implements OnInit,OnDestroy {
     if (index >= 0) {
       this.chemicalChipList.splice(index, 1);
     }
+    this.chemicalSelected.emit(null);
+
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -73,8 +83,7 @@ export class ChemicalSearchBoxComponent implements OnInit,OnDestroy {
         this.chemicalList = response.chemicals;
       },
       (err) => {
-        //TO DO Manage error
-        console.log(err);
+        this.error.emit(err.message);
       }
     );
   }
