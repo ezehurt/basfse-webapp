@@ -1,0 +1,12 @@
+.login{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1rem;
+ &__menu{
+   align-self: flex-start;
+ }
+}
+.icon-img-button{
+  background-size: cover ;
+  border-radius: 1rem;
+}
