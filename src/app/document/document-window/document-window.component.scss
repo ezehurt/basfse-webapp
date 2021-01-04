@@ -1,0 +1,18 @@
+.chemical-window-container{
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.document-window-table {
+  padding: 0rem 5rem 5rem 5rem;
+}
+.documents-windows-title {
+  text-align: center;
+}
+.documents-windows-subnavbar{
+  background-color:#2696d2 ;
+  .back-btn{
+    background-color:#2696d2;
+  }
+}

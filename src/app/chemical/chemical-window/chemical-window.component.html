@@ -1,0 +1,39 @@
+<div class="chemical-windows-container">
+  <div class="chemical-windows-searchbar">
+    <app-chemical-search-box
+      class="chemical-window-searchbox"
+      (chemicalSelected)="onChemicalSelected($event)"
+      (error)="onError($event)"
+    ></app-chemical-search-box>
+  </div>
+  <div class="chemical-window-summary">
+    <app-chemical-summay-card
+      class="chemical-window-summary-card"
+      [chemical]="chemical"
+      [documentsCount]="documentsCount"
+    ></app-chemical-summay-card>
+  </div>
+  <div class="chemical-window-summary-tables">
+    <div *ngIf="relatedChemicalTypeOneData">
+      <h3>Type 1 Related Chemical Docs</h3>
+      <app-chemical-summary-table
+      [chemicalData]="relatedChemicalTypeOneData"
+      [pageSize]="5"
+      [resultsLength]="relatedChemicalTypeOneDataResultLength"
+      (pagingEvent)="onTypeOnePagingEvent($event)"
+      (sortingEvent)="onTypeOneSortingEvent($event)"    ></app-chemical-summary-table>
+    </div>
+    <div *ngIf="relatedChemicalTypeTwoData">
+      <h3>Type 2 Related Chemical Docs</h3>
+      <app-chemical-summary-table
+      [chemicalData]="relatedChemicalTypeTwoData"
+      [pageSize]="5"
+      [resultsLength]="relatedChemicalTypeTwoDataResultLength"
+      (pagingEvent)="onTypeTwoPagingEvent($event)"
+      (sortingEvent)="onTypeTwoSortingEvent($event)"
+    ></app-chemical-summary-table>
+    </div>
+
+  </div>
+  <app-error-page *ngIf="showErrorPage"[description]="errorDescription" class="chemical-windows-error"></app-error-page>
+</div>

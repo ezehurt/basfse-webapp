@@ -1,0 +1,21 @@
+<mat-card class="chemical-sumary-card" *ngIf="chemical">
+  <mat-card-header class="chemical-sumary-card__header">
+    <div class="chemical-sumary-card__header-avatar">
+      <div class="icon">
+        <mat-icon>text_snippet</mat-icon>
+      </div>
+    </div>
+    <div class="chemical-sumary-card__header-information">
+      <mat-card-title>{{ documentsCount }} Results</mat-card-title>
+      <mat-card-subtitle
+        >{{ chemical.name }} was found in
+        {{ documentsCount }} documents</mat-card-subtitle
+      >
+    </div>
+    <div class="chemical-sumary-card__header-action">
+      <button mat-icon-button (click)="navigateToDocumentsPage()">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+  </mat-card-header>
+</mat-card>

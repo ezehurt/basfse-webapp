@@ -1,0 +1,40 @@
+.chemical-sumary-card{
+  display: flex;
+  &__header{
+    display:flex;
+    &-avatar{
+      background-color: #2696d2;
+      flex:1;
+      display: flex;
+      justify-content: center;
+      .icon{
+        align-self: center;
+        color: white;
+        cursor: default;
+      }
+    }
+    &-information{
+      padding: 0.5rem;
+      flex:3
+    }
+    &-action{
+      flex:1;
+      align-self: center;
+      cursor: pointer;
+    }
+  }
+}
+
+::ng-deep .mat-card-header-text{
+  margin:0 !important;
+}
+::ng-deep .mat-card{
+  padding:0 !important;
+}
+::ng-deep .mat-card-subtitle {
+  margin-bottom: 0 !important;
+}
+
+
+
+

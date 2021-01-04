@@ -1,0 +1,18 @@
+<div class="documents-window-container">
+  <div class="documents-windows-subnavbar">
+    <button mat-flat-button class="back-btn" (click)="navigateBack()"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+  </div>
+  <div class="documents-windows-title">
+    <h2>Documents results</h2>
+  </div>
+  <div class="document-window-table">
+    <app-documents-table
+    [documentData]="documentData"
+    [pageSize]="30"
+    [resultsLength]="documentsCount"
+    (pagingEvent)="onPagingEvent($event)"
+    (sortingEvent)="onSortingEvent($event)"
+  ></app-documents-table>
+  </div>
+
+</div>

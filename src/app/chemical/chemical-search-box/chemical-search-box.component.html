@@ -1,0 +1,29 @@
+<mat-form-field class="chemical-searchbox-chip-list">
+  <mat-chip-list #chipList aria-label="Chemical selection">
+    <mat-chip
+      *ngFor="let chemical of chemicalChipList"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(chemical)"
+    >
+      {{ chemical }}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      #chemicalInput
+      [formControl]="chemicalCtrl"
+      [ngClass]="{ hidden: hideInput }"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      (matChipInputTokenEnd)="add($event)"
+    />
+    <mat-icon class="search-icon" matSuffix (click)="onSearchIconClicked()"
+      >search</mat-icon
+    >
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let chemical of chemicalList" [value]="chemical._id">
+      {{ chemical.name }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

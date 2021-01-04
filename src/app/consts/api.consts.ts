@@ -1,0 +1,5 @@
+export const PAGING = {
+  DEFAULT_PAGE_SIZE: 5,
+  DEFAULT_OFFSET: 0,
+  DEFAULT_SORT_ORDER: 1
+}
