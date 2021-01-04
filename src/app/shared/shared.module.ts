@@ -4,6 +4,7 @@ import { SpinnerDialogComponent } from './spinner-dialog/spinner-dialog.componen
 import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AngularMaterialModule } from '../angular-material.module';
+import { AuthModule } from '../auth/auth.module';
 
 
 
@@ -15,7 +16,8 @@ import { AngularMaterialModule } from '../angular-material.module';
   ],
   imports: [
     CommonModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    AuthModule
   ],
   exports: [
     SpinnerDialogComponent,

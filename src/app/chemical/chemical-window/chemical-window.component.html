@@ -6,14 +6,14 @@
       (error)="onError($event)"
     ></app-chemical-search-box>
   </div>
-  <div class="chemical-window-summary">
+  <div class="chemical-window-summary" *ngIf="!showErrorPage">
     <app-chemical-summay-card
       class="chemical-window-summary-card"
       [chemical]="chemical"
       [documentsCount]="documentsCount"
     ></app-chemical-summay-card>
   </div>
-  <div class="chemical-window-summary-tables">
+  <div class="chemical-window-summary-tables" *ngIf="!showErrorPage">
     <div *ngIf="relatedChemicalTypeOneData">
       <h3>Type 1 Related Chemical Docs</h3>
       <app-chemical-summary-table
