@@ -123,7 +123,6 @@ export class ChemicalWindowComponent implements OnInit {
       this.doSorting(event, this.chemicalTypeTwo)
   }
   onError(message){
-    console.log(message);
     this.showErrorPage=true;
     this.errorDescription = message;
   }
