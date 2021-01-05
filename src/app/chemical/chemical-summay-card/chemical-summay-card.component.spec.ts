@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ChemicalSummayCardComponent } from './chemical-summay-card.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ChemicalSummayCardComponent', () => {
   let component: ChemicalSummayCardComponent;
@@ -8,6 +9,7 @@ describe('ChemicalSummayCardComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [ ChemicalSummayCardComponent ]
     })
     .compileComponents();
