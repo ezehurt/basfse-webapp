@@ -1,3 +1,4 @@
+@import "colours";
 .chemical-window-container{
   align-self: center;
   display: flex;
@@ -11,8 +12,8 @@
   text-align: center;
 }
 .documents-windows-subnavbar{
-  background-color:#2696d2 ;
+  background-color: $basf-sky-blue;
   .back-btn{
-    background-color:#2696d2;
+    background-color: $basf-sky-blue
   }
 }
