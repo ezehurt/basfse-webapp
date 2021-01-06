@@ -34,6 +34,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngAfterViewInit(){
     this.googleInit();
   }
+
+  googleInit() {
+    gapi.load('auth2', () => {
+      this.auth2 = gapi.auth2.init({
+        client_id: environment.GOOGLE_CLIENT_ID,
+        cookiepolicy: 'single_host_origin',
+        scope: 'profile email'
+      });
+      this.attachSignin(document.getElementById('googleBtn'));
+    });
+  }
+
   attachSignin(element) {
     this.auth2.attachClickHandler(element, {},
       (googleUser) => {
@@ -50,25 +62,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       });
   }
 
-
   signOut() {
     this.auth2.disconnect();
     this._store.dispatch(new fromAuth.UnsetUserAction());
   }
-  googleInit() {
-    gapi.load('auth2', () => {
-      this.auth2 = gapi.auth2.init({
-        client_id: environment.GOOGLE_CLIENT_ID,
-        cookiepolicy: 'single_host_origin',
-        scope: 'profile email'
-      });
-    });
-  }
+
   ngOnDestroy(){
     this._unsubscribe.next();
     this._unsubscribe.complete();
-  }
-  login(){
-    this.attachSignin(document.getElementById('googleBtn'));
   }
 }
