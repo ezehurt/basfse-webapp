@@ -1,9 +1,10 @@
+@import "colours";
 .chemical-sumary-card{
   display: flex;
   &__header{
     display:flex;
     &-avatar{
-      background-color: #2696d2;
+      background-color: $basf-sky-blue;
       flex:1;
       display: flex;
       justify-content: center;

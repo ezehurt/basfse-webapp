@@ -18,6 +18,8 @@ export class ChemicalWindowComponent implements OnInit {
 
   isLoading = false;
   showErrorPage = false;
+  chemicalTypeOneError = false;
+  chemicalTypeTwoError = false;
   errorDescription = "";
   chemical: IChemical;
   documentsCount: number;
@@ -93,8 +95,21 @@ export class ChemicalWindowComponent implements OnInit {
         }
       }
     }, err => {
-      this.showErrorPage = true;
-      this.errorDescription = err.message;
+      switch(chemicalType){
+        case this.chemicalTypeOne:{
+          this.chemicalTypeOneError = true;
+          break;
+        };
+        case this.chemicalTypeTwo: {
+          this.chemicalTypeTwoError = true;
+          break;
+        }
+        default:{
+          return;
+        }
+      }
+      this.showErrorPage = this.chemicalTypeOneError && this.chemicalTypeTwoError;
+      this.errorDescription = 'Error getting chemicals document information';
     })
   }
   doPagination(event,chemicalType){

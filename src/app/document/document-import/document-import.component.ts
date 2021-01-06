@@ -49,13 +49,13 @@ export class DocumentImportComponent implements OnInit {
         this._papaParse.parse(csv.toString(), {
           header: true,
           transformHeader: (header:string)=>{
-            if(header.includes('no')){
+            if(header.toLocaleLowerCase().includes('no')){
               return 'patentNo'
             }
-            if(header.includes('title')){
+            if(header.toLocaleLowerCase().includes('title')){
               return 'patentTitle'
             }
-            if(header.includes('chemical')){
+            if(header.toLocaleLowerCase().includes('chemical')){
               return 'chemicalName'
             }
           }

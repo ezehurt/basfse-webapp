@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ChemicalSummaryTableComponent } from './chemical-summary-table.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ChemicalSummaryTableComponent', () => {
   let component: ChemicalSummaryTableComponent;
@@ -8,6 +9,7 @@ describe('ChemicalSummaryTableComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [ ChemicalSummaryTableComponent ]
     })
     .compileComponents();

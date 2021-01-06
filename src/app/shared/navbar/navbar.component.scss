@@ -1,35 +1,14 @@
-
-.spacer {
-  flex: 1 1;
-}
-.navbar {
-  padding: 0 0;
-  justify-content: space-between;
-}
-.logo {
-  background-color: #214ca1;
-  height: 100%;
-  flex: 0.2;
-  align-self: flex-start;
-  max-width: 113px;
-}
-.logo-img {
-  height: inherit;
-}
-.actions{
-  display: flex;
-  flex: 1;
-  min-width: 300px;
-  justify-content: flex-end;
-  &__login{
-    width: 100px;
+.main-navbar {
+  padding-left: 0;
+  &__logo {
+    background-color:#214ca1;
+    height: inherit;
+    width: 120px;
+    .logo-img{
+      width: inherit;
+    }
   }
-  &__navigation{
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 1rem;
-   &__buttons{
-     align-self: flex-start;
-   }
+  &__spacer{
+    flex: 1 1 auto;
   }
 }

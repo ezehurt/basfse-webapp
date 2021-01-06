@@ -1,16 +1,31 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { LoginComponent } from './login.component';
+import { LoginComponent } from "./login.component";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { StoreModule } from "@ngrx/store";
+import * as fromRoot from "../../../root.reducer";
 
-describe('LoginComponent', () => {
+
+
+describe("LoginComponent", () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-
+  window['gapi'] = {
+    load() {
+      return null;
+    },
+    init() {
+      return null;
+    }
+  }
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
-    })
-    .compileComponents();
+      imports: [
+        HttpClientTestingModule,
+        StoreModule.forRoot(fromRoot.reducers),
+      ],
+      declarations: [LoginComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +34,7 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

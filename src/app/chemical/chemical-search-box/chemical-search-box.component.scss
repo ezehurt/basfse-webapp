@@ -1,25 +1,34 @@
-.chemical-searchbox-chip-list {
-  background: white;
+.chemical-searchbox {
+  display: flex;
+  align-items: center;
   width: 100%;
+  min-width: 450px;
+  @media only screen and (max-width: 600px) {
+    min-width: 300px;
+  }
+  .mat-form-field {
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    min-height: 2.5rem;
+    min-width: 200px;
+  }
+
+  &__chip-list {
+    background: white;
+    width: 100%;
+    input.mat-chip-input {
+      min-height: 2rem;
+    }
+  }
+  &__action-btn{
+    margin-left: 0.5rem
+  }
 }
-.mat-form-field {
-  border-radius: 10px;
-  text-align: center;
-  width: 100%;
-  min-height: 2.5rem;
-  min-width: 200px;
-}
+
 ::ng-deep .mat-autocomplete-panel.mat-autocomplete-visible {
   border-radius: 10px;
 }
-input.mat-chip-input {
-  min-height: 2rem;
-}
-
-.hidden {
-  visibility: hidden;
-}
-
 ::ng-deep .mat-form-field-infix {
   border-top: 0px !important;
 }
@@ -32,15 +41,7 @@ input.mat-chip-input {
   margin-top: 0rem;
   margin-bottom: 0rem;
 }
-
 ::ng-deep .mat-form-field-ripple {
   /*change color of underline when focused*/
   background-color: transparent !important;
-}
-.search-icon {
-  margin-right: 0.5rem;
-  cursor: pointer;
-}
-.mat-standard-chip {
-  min-height: 24px;
 }
