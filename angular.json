@@ -30,6 +30,11 @@
               "src/styles.scss"
             ],
             "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets/styles"
+            ]
+            },
             "aot": true
           },
           "configurations": {

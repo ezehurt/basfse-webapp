@@ -1,21 +1,18 @@
-<div class="login">
-  <div>
-    <button *ngIf="!user" id="googleBtn" mat-icon-button matTooltip="login" (click)="login()">
-      <mat-icon aria-hidden="false" aria-label="login"> login </mat-icon>
-    </button>
-  </div>
-  <div *ngIf="user" class="menu">
-    <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
-      <mat-icon
-        class="icon-img-button"
-        [ngStyle]="{ 'background-image': 'url(' + user.imageUrl + ')' }"
-      >
-      </mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item id="signOutBtn" (click)="signOut()">
-        Sing Out
-      </button>
-    </mat-menu>
-  </div>
-</div>
+<button
+  *ngIf="!user"
+  id="googleBtn"
+  mat-icon-button
+  matTooltip="login"
+>
+  <mat-icon aria-hidden="false" aria-label="login"> login </mat-icon>
+</button>
+<button mat-icon-button color="primary" [matMenuTriggerFor]="menu" *ngIf="user">
+  <mat-icon
+    class="icon-img-button"
+    [ngStyle]="{ 'background-image': 'url(' + user.imageUrl + ')' }"
+  >
+  </mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item id="signOutBtn" (click)="signOut()">Sing Out</button>
+</mat-menu>

@@ -3,6 +3,9 @@ import { IDocument } from '../models/IDocument';
 import { DocumentService, IFilter } from '../document.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PAGING } from '../../consts/api.consts';
+import { Store } from '@ngrx/store';
+import * as fromUI from '../../../store/ui/ui.actions';
+import { AppState } from '../../../root.reducer';
 
 @Component({
   selector: 'app-document-window',
@@ -23,8 +26,8 @@ export class DocumentWindowComponent implements OnInit {
   constructor(
     private _documentService: DocumentService,
     private _activatedRoute: ActivatedRoute,
-    private _route: Router
-
+    private _route: Router,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
@@ -34,12 +37,16 @@ export class DocumentWindowComponent implements OnInit {
     }
   }
   getDocumentsByChemicalId(chemicalID, filter){
+    this.store.dispatch(new fromUI.ActivateLoadingAction());
     this._documentService.getDocumentsByChemicalId(chemicalID,filter)
     .subscribe((response:any)=>{
+      this.store.dispatch(new fromUI.DeactivateLoadingAction());
       this.documentsCount = response.paging.total;
       this.documentData = response.documents;
     }, err => {
       //TO DO MANAGE ERROR
+      this.store.dispatch(new fromUI.DeactivateLoadingAction());
+
     })
   }
   onPagingEvent(event){
@@ -52,7 +59,7 @@ export class DocumentWindowComponent implements OnInit {
     this.filter.offset = PAGING.DEFAULT_OFFSET;
     this.filter.sortBy = event.active;
     this.filter.sortOrder = this._mapSortOrder(event.direction);
-    this.getDocumentsByChemicalId(this.chemicalID,this.filter)
+    this.getDocumentsByChemicalId(this.chemicalID,this.filter);
   }
 
   navigateBack(){

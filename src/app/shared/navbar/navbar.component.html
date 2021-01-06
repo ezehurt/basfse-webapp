@@ -1,18 +1,15 @@
-<mat-toolbar color="secondary">
-  <mat-toolbar-row class="navbar">
-    <div class="logo">
-      <img src="../../../assets/img/basf-logo.png" alt="basf-logo" class="logo-img">
-    </div>
-    <!-- <span class="spacer"></span> -->
-    <div class="actions">
-      <div class="actions__navigation">
-        <div class="buttons">
-          <a (click)="navigate('/import')" mat-button>Import CSV</a>
-          <a (click)="navigate('/')" mat-button>Search</a>
-
-        </div>
+<mat-toolbar class="main-navbar">
+  <div class="main-navbar__logo">
+    <img src="../../../assets/img/basf-logo.png" alt="basf-logo" class="logo-img">
+  </div>
+  <span class="main-navbar__spacer"></span>
+  <div class="main-navbar__actions">
+    <div class="navbar-actions">
+      <div class="navbar-actions__items">
+        <a (click)="navigate('/import')" mat-button>Import CSV</a>
+        <a (click)="navigate('/')" mat-button>Search</a>
+        <app-login class="actions__login"></app-login>
       </div>
-      <app-login class="actions__login"></app-login>
     </div>
-  </mat-toolbar-row>
+  </div>
 </mat-toolbar>

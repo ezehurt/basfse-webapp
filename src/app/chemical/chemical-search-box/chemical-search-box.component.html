@@ -1,29 +1,40 @@
-<mat-form-field class="chemical-searchbox-chip-list">
-  <mat-chip-list #chipList aria-label="Chemical selection">
-    <mat-chip
-      *ngFor="let chemical of chemicalChipList"
-      [selectable]="selectable"
-      [removable]="removable"
-      (removed)="remove(chemical)"
+<div class="chemical-searchbox">
+  <mat-form-field class="chemical-searchbox__chip-list">
+    <mat-chip-list #chipList aria-label="Chemical selection">
+      <mat-chip
+        *ngFor="let chemical of chemicalChipList"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(chemical)"
+      >
+        {{ chemical }}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        #chemicalInput
+        [formControl]="chemicalCtrl"
+        *ngIf="!hideInput"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-list>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="selected($event)"
     >
-      {{ chemical }}
-      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-    </mat-chip>
-    <input
-      #chemicalInput
-      [formControl]="chemicalCtrl"
-      [ngClass]="{ hidden: hideInput }"
-      [matAutocomplete]="auto"
-      [matChipInputFor]="chipList"
-      (matChipInputTokenEnd)="add($event)"
-    />
-    <mat-icon class="search-icon" matSuffix (click)="onSearchIconClicked()"
-      >search</mat-icon
+      <mat-option *ngFor="let chemical of chemicalList" [value]="chemical._id">
+        {{ chemical.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div class="chemical-searchbox__action-btn">
+    <button
+      mat-mini-fab
+      color="accent"
+      aria-label="Search button"
     >
-  </mat-chip-list>
-  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-    <mat-option *ngFor="let chemical of chemicalList" [value]="chemical._id">
-      {{ chemical.name }}
-    </mat-option>
-  </mat-autocomplete>
-</mat-form-field>
+      <mat-icon matSuffix (click)="onSearchIconClicked()">search</mat-icon>
+    </button>
+  </div>
+</div>
